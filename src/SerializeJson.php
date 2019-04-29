@@ -14,9 +14,9 @@ class SerializeJson implements SerializerInterface
      */
     public function serialize($value)
     {
-        if(!($value instanceof SerializeJson)){
-            echo $value." is not class` object!!!";
-        }
+        if (!is_object($value)) {
+            echo $value."is not class` object";
+    }
 
         elseif (!json_encode($value)) echo "Encode error!!!";
 

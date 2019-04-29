@@ -1,0 +1,21 @@
+{
+    "name": "itea/yaroslav",
+    "description": "serializer",
+    "type": "project",
+    "license": "no",
+    "authors": [
+        {
+            "name": "Lysenko Yaroslav",
+            "email": "lysenko.yaroslav1996@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Serialize\\": "src/"
+        }
+    "minimum-stability": "stable",
+    "require": {
+	 "ext-json": "^1.6",
+         "symfony/yaml": "^4.2"
+     }
+}

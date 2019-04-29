@@ -13,13 +13,13 @@ class SerializeYaml implements SerializerInterface
      */
     public function serialize($value)
     {
-        if(!($value instanceof SerializeYaml)){
-            echo $value." is not class` object!!!";
+        if (!is_object($value)) {
+                echo $value."is not class` object";
         }
 
         elseif (!yaml_emit($value)) echo "Encode error!..";
 
-        return yaml_emit($value);
+        else return yaml_emit($value);
     }
 
     /**
