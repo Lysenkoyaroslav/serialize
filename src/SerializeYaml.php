@@ -1,25 +1,37 @@
 <?php
 
-namespace Serialize;
+namespace itea\serializer;
 
 
 use SerializerInterface\SerializerInterface;
 
 class SerializeYaml implements SerializerInterface
 {
+    public $resultEmit;
+    public $resultParse;
+
     /**
      * @param object $value
      * @return string
      */
     public function serialize($value)
     {
+
+        $this->resultEmit = yaml_emit($value);
+
         if (!is_object($value)) {
-                echo $value."is not class` object";
+
+            echo "Use only class` object!..";
+
+        } elseif (!$this->resultEmit) {
+
+            echo "Encode error!..";
+
+        } else {
+
+            return $this->resultEmit;
+
         }
-
-        elseif (!yaml_emit($value)) echo "Encode error!..";
-
-        else return yaml_emit($value);
     }
 
     /**
@@ -29,8 +41,16 @@ class SerializeYaml implements SerializerInterface
      */
     public function unserialize($value)
     {
-        if (!yaml_parse($value)) echo "Unknown error!..";
+        $this->resultParse = yaml_parse($value);
 
-        return yaml_parse($value, true);
+        if (!$this->resultParse) {
+
+            echo "Unknown error!..";
+
+        } else {
+
+            return $this->resultParse;
+
+        }
     }
 }

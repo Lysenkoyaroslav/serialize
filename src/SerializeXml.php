@@ -1,6 +1,6 @@
 <?php
 
-namespace Serialize;
+namespace itea\serializer;
 
 
 use SerializerInterface\SerializerInterface;
@@ -28,7 +28,7 @@ class SerializeXml implements SerializerInterface
     public function unserialize($value)
     {
         $array = (array)\simplexml_load_string($value);
-        self::castToArray($array);
+        $this->castToArray($array);
         return $array;
     }
 
@@ -58,7 +58,7 @@ class SerializeXml implements SerializerInterface
                 $value = (array)$value;
             }
             if (is_array($value)) {
-                self::castToArray($value);
+                $this->castToArray($value);
             }
         }
     }

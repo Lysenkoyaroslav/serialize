@@ -1,9 +1,10 @@
 <?php
 
-namespace SerializerInterface;
+namespace itea\serializer;
 
 interface SerializerInterface
 {
+
     /**
      * @param object $value
      *

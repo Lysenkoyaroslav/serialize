@@ -1,12 +1,18 @@
 <?php
 
-namespace Serialize; // общее название
+namespace itea\serializer;
+// общее название
 
 
 use SerializerInterface\SerializerInterface;
 
 class SerializeJson implements SerializerInterface
 {
+
+    public $resultEncode;
+    public $resultDecode;
+
+
     /**
      * @param object $value
      *
@@ -14,13 +20,22 @@ class SerializeJson implements SerializerInterface
      */
     public function serialize($value)
     {
+
+        $this->resultEncode = json_encode($value);
+
         if (!is_object($value)) {
-            echo $value."is not class` object";
-    }
 
-        elseif (!json_encode($value)) echo "Encode error!!!";
+            echo "Use only class` object!..";
 
-        else return json_encode($value);
+        } elseif (!$this->resultEncode) {
+
+            echo "Encode error!!!";
+
+        } else {
+
+            return $this->resultEncode;
+
+        }
     }
 
     /**
@@ -30,8 +45,17 @@ class SerializeJson implements SerializerInterface
      */
     public function unserialize($value)
     {
-        if(!json_decode($value)) echo "Decode error!!!";
 
-        return json_decode($value, true);
+        $this->resultDecode = json_decode($value);
+
+        if (!$this->resultDecode) {
+
+            echo "Decode error!!!";
+
+        } else {
+
+            return $this->resultDecode;
+
+        }
     }
 }
